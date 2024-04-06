@@ -302,9 +302,9 @@ clear
 cd ~/
 
 if [ -z "$hashdevice" ]; then
-  cracker="$( hashcat -m 2500 $DIR/capture.hccapx $wordlist | tee /dev/tty | sed -e "/:$targetnet:/q" )"
+  cracker="$( hashcat -m 2500 --deprecated-check-disable $DIR/capture.hccapx $wordlist | tee /dev/tty | sed -e "/:$targetnet:/q" )"
 else
-  cracker="$( hashcat -d $hashdevice -m 2500 $DIR/capture.hccapx $wordlist | tee /dev/tty | sed -e "/:$targetnet:/q" )"
+  cracker="$( hashcat -d $hashdevice -m 2500 --deprecated-check-disable $DIR/capture.hccapx $wordlist | tee /dev/tty | sed -e "/:$targetnet:/q" )"
 fi
 
 clear
@@ -320,9 +320,9 @@ if [ -z "$pass" ]; then
   echo "Kept handshake, crack manually with:" | fmt -c -w $COLUMNS
   printf "${DARKGRAY}"
   if [ -z "$hashdevice" ]; then
-    echo "hashcat -m 2500 $DIR/capture.hccapx $wordlist" | fmt -c -w $COLUMNS
+    echo "hashcat -m 2500 --deprecated-check-disable $DIR/capture.hccapx $wordlist" | fmt -c -w $COLUMNS
   else
-    echo "hashcat -d $hashdevice -m 2500 $DIR/capture.hccapx $wordlist" | fmt -c -w $COLUMNS
+    echo "hashcat -d $hashdevice -m 2500 --deprecated-check-disable $DIR/capture.hccapx $wordlist" | fmt -c -w $COLUMNS
   fi
   printf "${NC}"
   echo
